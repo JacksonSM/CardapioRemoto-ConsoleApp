@@ -29,12 +29,25 @@ async void GerenciarCategoria()
     WriteLine("|=============================================|");
     WriteLine("");
     WriteLine("1 - Criar Categoria");
+    WriteLine("2 - Listar Categoria");
 
     WriteLine("");
     Write("Selecione a opção: ");
-    ReadLine();
+    int escolha = int.Parse(ReadLine());
+
     Clear();
-    await CriarCategoria();
+    switch (escolha)
+    {
+        case 1:
+            await CriarCategoria();
+            break;
+        case 2:
+            ListarCategoria();
+            break;
+    }
+
+
+
 }
 
 async Task CriarCategoria()
@@ -51,4 +64,17 @@ async Task CriarCategoria()
     Thread.Sleep(2000);
     Clear();
     GerenciarCategoria();
+}
+
+async void ListarCategoria()
+{
+    var categorias = await _categoriaRepository.GetAll();
+    WriteLine("+--------------------+");
+    WriteLine("| ID |     NOME      |");
+    WriteLine("+--------------------+");
+
+    foreach (var categoria in categorias)
+    {
+        WriteLine($"{categoria.Id} | {categoria.Nome}");
+    }
 }
