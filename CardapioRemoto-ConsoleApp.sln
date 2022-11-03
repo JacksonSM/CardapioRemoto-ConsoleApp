@@ -7,9 +7,11 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{EE5B71EF-839
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardapio.View.Cliente", "src\View.Cliente\Cardapio.View.Cliente.csproj", "{86FEDB90-5E70-4ECD-8207-6BF0184A4FF9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardapio.View.Administrador", "src\Cardapio.View.Administrador\Cardapio.View.Administrador.csproj", "{C1729280-2338-4556-9DEC-89CBCC55E9FF}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardapio.View.Administrador", "src\Cardapio.View.Administrador\Cardapio.View.Administrador.csproj", "{C1729280-2338-4556-9DEC-89CBCC55E9FF}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardapio.Master", "src\Cardapio.Master\Cardapio.Master.csproj", "{95F937C5-C933-4F44-AD84-52D6B3EC16EB}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardapio.Master", "src\Cardapio.Master\Cardapio.Master.csproj", "{95F937C5-C933-4F44-AD84-52D6B3EC16EB}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E32E74AC-94B6-4D0C-9B03-361CB71D6D48}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

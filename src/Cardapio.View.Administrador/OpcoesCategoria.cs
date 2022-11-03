@@ -4,11 +4,11 @@ using Cardapio.Master.Models;
 using static System.Console;
 
 namespace Cardapio.View.Administrador;
-public class CategoriaOptions : IDisposable
+public class OpcoesCategoria : IDisposable
 {
     ICategoriaRepository _categoriaRepository;
 
-    public CategoriaOptions()
+    public OpcoesCategoria()
     {
         _categoriaRepository = DIConteiner.InjectCategoriaRepository();
     }
@@ -18,8 +18,9 @@ public class CategoriaOptions : IDisposable
         this.Dispose();
     }
 
-    public async void GerenciarCategoria()
+    public void GerenciarCategoria()
     {
+        Clear();
         WriteLine("|=============================================|");
         WriteLine("|================ Categorias =================|");
         WriteLine("|=============================================|");
@@ -30,8 +31,7 @@ public class CategoriaOptions : IDisposable
         WriteLine("4 - Alterar Categoria");
 
         WriteLine("");
-        Write("Selecione a opção: ");
-        int escolha = int.Parse(ReadLine());
+        var escolha = Entrada.ReceberInteiro("Selecione a opção: ", 1, 4);
 
         Clear();
         switch (escolha)
@@ -67,7 +67,6 @@ public class CategoriaOptions : IDisposable
         WriteLine($"*** {nome} criado com sucesso ***");
 
         Thread.Sleep(2000);
-        Clear();
         GerenciarCategoria();
     }
 
@@ -82,40 +81,54 @@ public class CategoriaOptions : IDisposable
         {
             WriteLine($"{categoria.Id} | {categoria.Nome}");
         }
+
+        Voltar();
     }
 
     void ObterCategoriaPorId()
     {
-        Write("Digite um ID: ");
-        int id = int.Parse(ReadLine());
+        int id = Entrada.ReceberInteiro("Digite um ID: ");
 
         var categoria = _categoriaRepository.GetById(id);
         if (categoria == null)
         {
-            WriteLine("Categoria não foi encontrada. Pressione enter para retorna a buscar.");
+            Voltar("Categoria não foi encontrada. Pressione qualquer tecla para voltar.");
         }
         else
         {
             WriteLine("");
             WriteLine(categoria);
+            Voltar();
         }
 
     }
-    void AlterarCategoria()
-    {
-        Write("Digete o ID da categoria: ");
-        int id = int.Parse(ReadLine());
+    void AlterarCategoria() { 
 
+        int id = Entrada.ReceberInteiro("Digite o ID da categoria: ");
         var categoria = _categoriaRepository.GetById(id);
         if (categoria == null)
         {
-            WriteLine("Categoria não foi encontrada. Pressione enter para retorna a buscar.");
+            Voltar("Categoria não foi encontrada. Pressione qualquer tecla para voltar.");
         }
         else
         {
             Write($"Alterar [{categoria.Nome}] para: ");
             categoria.Nome = ReadLine();
             _categoriaRepository.Update(categoria.Id, categoria);
+
+            WriteLine($"");
+            WriteLine($"*** {categoria.Nome} alterado com sucesso ***");
+
+            Thread.Sleep(2000);
+            GerenciarCategoria();
         }
     }
+    void Voltar(string mensagem = "Pressione qualquer tecla para voltar.")
+    {
+        WriteLine("");
+        Write(mensagem);
+        ReadKey();
+        GerenciarCategoria();
+    }
+
 }

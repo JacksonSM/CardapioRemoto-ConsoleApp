@@ -14,12 +14,15 @@ void TelaPrincipal()
     WriteLine("1 - Gerenciar Categoria");
 
     WriteLine("");
-    Write("Selecione a opção: ");
-    ReadLine();
-    Clear();
-    var gerirCategoria = new CategoriaOptions();
-    gerirCategoria.GerenciarCategoria();
+    var escolha = Entrada.ReceberInteiro("Selecione a opção: ",1,1);
 
+    switch (escolha)
+    {
+        case 1:
+            var gerirCategoria = new OpcoesCategoria();
+            gerirCategoria.GerenciarCategoria();
+            break;
+    }
 
 }
 
