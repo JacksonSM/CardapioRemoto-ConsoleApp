@@ -27,6 +27,7 @@ public class CategoriaOptions : IDisposable
         WriteLine("1 - Criar Categoria");
         WriteLine("2 - Listar Categoria");
         WriteLine("3 - Obter Categoria por Id");
+        WriteLine("4 - Alterar Categoria");
 
         WriteLine("");
         Write("Selecione a opção: ");
@@ -44,11 +45,15 @@ public class CategoriaOptions : IDisposable
             case 3:
                 ObterCategoriaPorId();
                 break;
+            case 4:
+                AlterarCategoria();
+                break;
         }
 
 
 
     }
+
 
     async Task CriarCategoria()
     {
@@ -57,7 +62,7 @@ public class CategoriaOptions : IDisposable
         Write("Nome: ");
         var nome = ReadLine();
 
-        await _categoriaRepository.AddAsync(new Categoria { Nome = nome });
+        await _categoriaRepository.Add(new Categoria { Nome = nome });
         WriteLine($"");
         WriteLine($"*** {nome} criado com sucesso ***");
 
@@ -68,7 +73,7 @@ public class CategoriaOptions : IDisposable
 
     async void ListarCategoria()
     {
-        var categorias = await _categoriaRepository.GetAllAysnc();
+        var categorias = await _categoriaRepository.GetAll();
         WriteLine("+--------------------+");
         WriteLine("| ID |     NOME      |");
         WriteLine("+--------------------+");
@@ -84,7 +89,7 @@ public class CategoriaOptions : IDisposable
         Write("Digite um ID: ");
         int id = int.Parse(ReadLine());
 
-        var categoria = await _categoriaRepository.GetByIdAysnc(id);
+        var categoria = await _categoriaRepository.GetById(id);
         if (categoria == null)
         {
             WriteLine("Categoria não foi encontrada. Pressione enter para retorna a buscar.");
@@ -95,5 +100,21 @@ public class CategoriaOptions : IDisposable
             WriteLine(categoria);
         }
 
+    }
+    private async void AlterarCategoria()
+    {
+        WriteLine("Digete o ID da categoria: ");
+        int id = int.Parse(ReadLine());
+
+        var categoria = await _categoriaRepository.GetById(id);
+        if (categoria == null)
+        {
+            WriteLine("Categoria não foi encontrada. Pressione enter para retorna a buscar.");
+        }
+        else
+        {
+            WriteLine($"Alterar [{categoria}] para: ");
+            WriteLine(categoria);
+        }
     }
 }

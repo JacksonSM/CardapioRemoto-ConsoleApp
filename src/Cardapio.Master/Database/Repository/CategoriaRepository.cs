@@ -7,7 +7,7 @@ namespace Cardapio.Master.Database.Repository;
 public class CategoriaRepository : ICategoriaRepository
 {
 
-    public async Task AddAsync(Categoria categoria)
+    public void Add(Categoria categoria)
     {
         using (IDbConnection connection = new DbSession().Connection)
         {
@@ -19,7 +19,7 @@ public class CategoriaRepository : ICategoriaRepository
         }
     }
 
-    public async Task<IEnumerable<Categoria>> GetAllAysnc()
+    public IEnumerable<Categoria> GetAll()
     {
         using (IDbConnection connection = new DbSession().Connection)
         {
@@ -31,7 +31,7 @@ public class CategoriaRepository : ICategoriaRepository
         }
     }
 
-    public async Task<Categoria> GetByIdAysnc(int id)
+    public Categoria GetById(int id)
     {
         using (IDbConnection connection = new DbSession().Connection)
         {
@@ -41,5 +41,10 @@ public class CategoriaRepository : ICategoriaRepository
 
             return connection.QueryFirstOrDefault<Categoria>(query, parameters);
         }
+    }
+
+    public void Update(string id, Categoria categoria)
+    {
+        throw new NotImplementedException();
     }
 }
