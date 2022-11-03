@@ -43,8 +43,21 @@ public class CategoriaRepository : ICategoriaRepository
         }
     }
 
-    public void Update(string id, Categoria categoria)
+    public void Update(int id, Categoria categoria)
     {
-        throw new NotImplementedException();
+        using (IDbConnection connection = new DbSession().Connection)
+        {
+            var query =
+            @"UPDATE [CardapioDB].[dbo].[Categoria]
+            SET [Nome] = @nome
+            WHERE Id = @id";
+
+            var parameters = new
+            {
+                Id = id,
+                nome = categoria.Nome
+            };
+            connection.Execute(query, parameters);
+        }
     }
 }

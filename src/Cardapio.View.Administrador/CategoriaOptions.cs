@@ -37,7 +37,7 @@ public class CategoriaOptions : IDisposable
         switch (escolha)
         {
             case 1:
-                await CriarCategoria();
+                CriarCategoria();
                 break;
             case 2:
                 ListarCategoria();
@@ -55,14 +55,14 @@ public class CategoriaOptions : IDisposable
     }
 
 
-    async Task CriarCategoria()
+    void CriarCategoria()
     {
         WriteLine("=== Criando Categoria ====");
         WriteLine("");
         Write("Nome: ");
         var nome = ReadLine();
 
-        await _categoriaRepository.Add(new Categoria { Nome = nome });
+        _categoriaRepository.Add(new Categoria { Nome = nome });
         WriteLine($"");
         WriteLine($"*** {nome} criado com sucesso ***");
 
@@ -71,9 +71,9 @@ public class CategoriaOptions : IDisposable
         GerenciarCategoria();
     }
 
-    async void ListarCategoria()
+    void ListarCategoria()
     {
-        var categorias = await _categoriaRepository.GetAll();
+        var categorias = _categoriaRepository.GetAll();
         WriteLine("+--------------------+");
         WriteLine("| ID |     NOME      |");
         WriteLine("+--------------------+");
@@ -84,12 +84,12 @@ public class CategoriaOptions : IDisposable
         }
     }
 
-    async void ObterCategoriaPorId()
+    void ObterCategoriaPorId()
     {
         Write("Digite um ID: ");
         int id = int.Parse(ReadLine());
 
-        var categoria = await _categoriaRepository.GetById(id);
+        var categoria = _categoriaRepository.GetById(id);
         if (categoria == null)
         {
             WriteLine("Categoria não foi encontrada. Pressione enter para retorna a buscar.");
@@ -101,20 +101,21 @@ public class CategoriaOptions : IDisposable
         }
 
     }
-    private async void AlterarCategoria()
+    void AlterarCategoria()
     {
-        WriteLine("Digete o ID da categoria: ");
+        Write("Digete o ID da categoria: ");
         int id = int.Parse(ReadLine());
 
-        var categoria = await _categoriaRepository.GetById(id);
+        var categoria = _categoriaRepository.GetById(id);
         if (categoria == null)
         {
             WriteLine("Categoria não foi encontrada. Pressione enter para retorna a buscar.");
         }
         else
         {
-            WriteLine($"Alterar [{categoria}] para: ");
-            WriteLine(categoria);
+            Write($"Alterar [{categoria.Nome}] para: ");
+            categoria.Nome = ReadLine();
+            _categoriaRepository.Update(categoria.Id, categoria);
         }
     }
 }
