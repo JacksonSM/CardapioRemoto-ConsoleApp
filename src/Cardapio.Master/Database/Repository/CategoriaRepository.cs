@@ -7,7 +7,7 @@ namespace Cardapio.Master.Database.Repository;
 public class CategoriaRepository : ICategoriaRepository
 {
 
-    public async Task Add(Categoria categoria)
+    public async Task AddAsync(Categoria categoria)
     {
         using (IDbConnection connection = new DbSession().Connection)
         {
@@ -19,7 +19,7 @@ public class CategoriaRepository : ICategoriaRepository
         }
     }
 
-    public async Task<IEnumerable<Categoria>> GetAll()
+    public async Task<IEnumerable<Categoria>> GetAllAysnc()
     {
         using (IDbConnection connection = new DbSession().Connection)
         {
@@ -28,6 +28,18 @@ public class CategoriaRepository : ICategoriaRepository
             var query = "SELECT * FROM [CardapioDB].[dbo].[Categoria];";
 
             return connection.Query<Categoria>(query);
+        }
+    }
+
+    public async Task<Categoria> GetByIdAysnc(int id)
+    {
+        using (IDbConnection connection = new DbSession().Connection)
+        {
+            var query = "SELECT * FROM [CardapioDB].[dbo].[Categoria] WHERE Id = @Id";
+
+            var parameters = new { Id = id };
+
+            return connection.QueryFirstOrDefault<Categoria>(query, parameters);
         }
     }
 }

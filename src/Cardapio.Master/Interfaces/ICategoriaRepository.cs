@@ -4,6 +4,7 @@ namespace Cardapio.Master.Interfaces;
 
 public interface ICategoriaRepository
 {
-    Task Add(Categoria categoria);
-    Task<IEnumerable<Categoria>> GetAll();
+    Task AddAsync(Categoria categoria);
+    Task<IEnumerable<Categoria>> GetAllAysnc();
+    Task<Categoria> GetByIdAysnc(int id);
 }
