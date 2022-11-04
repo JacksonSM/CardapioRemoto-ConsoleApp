@@ -6,4 +6,9 @@
     <Nullable>enable</Nullable>
   </PropertyGroup>
 
+  <ItemGroup>
+    <ProjectReference Include="..\Cardapio.Master\Cardapio.Master.csproj" />
+    <ProjectReference Include="..\Cardapio.Shared\Cardapio.Shared.csproj" />
+  </ItemGroup>
+
 </Project>

@@ -1,41 +1,29 @@
-﻿using static System.Console;
+﻿using Cardapio.Shared;
+using Cardapio.View.Cliente;
+using static System.Console;
 
-CardapioCategorias();
+TelaPrincipal();
 
-
-void TelaInicial()
+void TelaPrincipal()
 {
     WriteLine("|=============================================|");
-    WriteLine("|============= Olá, Bem-vindo !===============|");
+    WriteLine("|============ Olá, Bem-vindo ! ===============|");
     WriteLine("|=============================================|");
     WriteLine("");
-    WriteLine("1 - Cardapio");
-}
+    WriteLine("1 - Cadapio");
 
-void CardapioCategorias()
-{
-    //provisorio
-    string[] categorias = { "Pratos familia", "Acompanhamentos", "sobremesa", "petiscos" };
+    WriteLine("");
+    var escolha = Entrada.ReceberInteiro("Selecione a opção: ", 1, 1);
 
-    WriteLine("|=======================================|");
-    WriteLine("|=============  Cardapio  ==============|");
-    WriteLine("|=======================================|");
-
-    for (int i = 1; i < categorias.Length; i++)
+    switch (escolha)
     {
-        WriteLine("");
-        WriteLine($"{i} - {categorias[i]}");
+        case 1:
+            var cardapio = new OpcoesCardapio();
+            cardapio.InicioCardapio();
+            break;
     }
 
-    CapturarEntrada("Digite o número da categoria: ", 1, categorias.Length);
+}
 
-}
-int CapturarEntrada(string mesagem, int min, int max)
-{
-    int entradaUsuario = 0;
-    while ()
-    {
-        Write("Digite o número da categoria: ");
-        ReadLine();
-    }
-}
+
+

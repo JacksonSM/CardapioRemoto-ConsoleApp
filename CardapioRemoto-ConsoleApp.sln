@@ -11,9 +11,7 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardapio.View.Administrador
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardapio.Master", "src\Cardapio.Master\Cardapio.Master.csproj", "{95F937C5-C933-4F44-AD84-52D6B3EC16EB}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "tests", "tests", "{E32E74AC-94B6-4D0C-9B03-361CB71D6D48}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Cardapio.Shared", "src\Cardapio.Shared\Cardapio.Shared.csproj", "{518F215D-4A0F-4970-90EB-4321A6E9E9DD}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "Cardapio.Shared", "src\Cardapio.Shared\Cardapio.Shared.csproj", "{518F215D-4A0F-4970-90EB-4321A6E9E9DD}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

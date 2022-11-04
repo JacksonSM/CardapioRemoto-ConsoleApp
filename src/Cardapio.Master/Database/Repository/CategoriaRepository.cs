@@ -31,6 +31,22 @@ public class CategoriaRepository : ICategoriaRepository
         }
     }
 
+    public IEnumerable<Categoria> GetAllWithComida()
+    {
+        var query = @"SELECT * FROM [CardapioDB].[dbo].[Categoria] AS categoria 
+                      JOIN [Comida] AS comida ON categoria.Id = comida.CategoriaId";
+
+        using (IDbConnection connection = new DbSession().Connection)
+        {
+            var categorias = connection.Query<Categoria, Comida, Categoria>(query, (categoria, comida) =>
+            {
+                categoria.Comidas.Add(comida);
+                return categoria;
+            });
+            return categorias;
+        }
+    }
+
     public Categoria GetById(int id)
     {
         using (IDbConnection connection = new DbSession().Connection)
