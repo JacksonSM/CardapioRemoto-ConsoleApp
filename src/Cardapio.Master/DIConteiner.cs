@@ -8,4 +8,9 @@ public static class DIConteiner
     {
         return new CategoriaRepository();
     }
+
+    public static IComidaRepository InjectComidaRepository()
+    {
+        return new ComidaRepository();
+    }
 }

@@ -1,4 +1,4 @@
-﻿namespace Cardapio.View.Administrador;
+﻿namespace Cardapio.Shared;
 public static class Entrada
 {
     public static int ReceberInteiro(string mensagem)
@@ -17,17 +17,17 @@ public static class Entrada
     {
         Console.Write(mensagem);
         int valorEntrada;
-        while (!IsValid(min,max, out valorEntrada))
+        while (!IsValid(min, max, out valorEntrada))
         {
             Console.Write($"Insira apenas números inteiros de {min} a {max}: ");
         }
-        
+
         return valorEntrada;
     }
 
     static bool IsValid(int min, int max, out int valor)
     {
-        if(int.TryParse(Console.ReadLine(), out int valorEntrada))
+        if (int.TryParse(Console.ReadLine(), out int valorEntrada))
         {
             if (min <= valorEntrada && max >= valorEntrada)
             {

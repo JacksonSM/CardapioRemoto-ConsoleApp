@@ -1,6 +1,7 @@
 ﻿using Cardapio.Master;
 using Cardapio.Master.Interfaces;
 using Cardapio.Master.Models;
+using Cardapio.Shared;
 using static System.Console;
 
 namespace Cardapio.View.Administrador;
